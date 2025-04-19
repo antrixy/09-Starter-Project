@@ -76,3 +76,17 @@ jobs:
       - name: Output information
         run: |
           echo "Live URL: ${{ steps.deploy.outputs.website-url}}"
+      
+      - name: Deploy site Docker
+        id: deploy_docker
+        env:
+            AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+            AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        uses: ./.github/actions/deploy-s3-docker
+        with:
+            bucket: ashok.github.custom.action
+            dist-foler: ./dist
+            bucker-region: us-east-1
+      - name: Output information
+        run: |
+            echo "Live Docker URL: ${{ steps.deploy_docker.outputs.website-url}}"    
