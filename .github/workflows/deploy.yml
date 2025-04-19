@@ -64,6 +64,7 @@ jobs:
       - name: Output contents
         run: ls
       - name: Deploy site
+        id: deploy
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
@@ -72,3 +73,6 @@ jobs:
           bucket: ashok.github.custom.action
           dist-foler: ./dist
           bucker-region: us-east-1
+      - name: Output information
+        run: |
+          echo "Live URL: ${{ steps.deploy.outputs.website-url}}"
