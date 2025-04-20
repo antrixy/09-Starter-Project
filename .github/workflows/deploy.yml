@@ -85,7 +85,7 @@ jobs:
         uses: ./.github/actions/deploy-s3-docker
         with:
             bucket: ashok.github.custom.action
-            dist-foler: ./dist
+            dist-folder: ./dist
             bucket-region: us-east-1
       - name: Output information
         run: |
