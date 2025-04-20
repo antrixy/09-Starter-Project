@@ -72,7 +72,7 @@ jobs:
         with:
           bucket: ashok.github.custom.action
           dist-folder: ./dist
-          bucker-region: us-east-1
+          bucket-region: us-east-1
       - name: Output information
         run: |
           echo "Live URL: ${{ steps.deploy.outputs.website-url}}"
