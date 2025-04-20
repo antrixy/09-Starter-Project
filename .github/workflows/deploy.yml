@@ -84,7 +84,7 @@ jobs:
             AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         uses: ./.github/actions/deploy-s3-docker
         with:
-            bucket: ashok.github.custom.action
+            bucket: ashok.custom.github.action.docker
             dist-folder: ./dist
             bucket-region: us-east-1
       - name: Output information
