@@ -71,7 +71,7 @@ jobs:
         uses: ./.github/actions/deploy-s3-javascript
         with:
           bucket: ashok.github.custom.action
-          dist-foler: ./dist
+          dist-folder: ./dist
           bucker-region: us-east-1
       - name: Output information
         run: |
