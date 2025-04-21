@@ -53,6 +53,9 @@ jobs:
   deploy:
     needs: build
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
     steps:
       - name: Get code
         uses: actions/checkout@v4
@@ -90,3 +93,19 @@ jobs:
       - name: Output information
         run: |
             echo "Live Docker URL: ${{ steps.deploy_docker.outputs.website-url}}"    
+
+      - name: Get aws information
+        uses: aws-actions/configure-aws-credentials@v4  
+        with:
+          role-to-assume: arn:aws:iam::825765404280:role/GitHubDemo1
+          aws-region: us-east-1
+      - name: Deploy site Docker using Open ID
+        id: deploy_docker_openid
+        uses: ./.github/actions/deploy-s3-docker
+        with:
+            bucket: gha-security-hosting-demo-ash
+            dist-folder: ./dist
+            bucket-region: us-east-1
+      - name: Output information
+        run: |
+                echo "Live Docker URL with open id: ${{ steps.deploy_docker_openid.outputs.website-url}}"    
